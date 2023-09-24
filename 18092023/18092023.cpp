@@ -1,8 +1,10 @@
 ﻿#include <iostream>
 #include <Windows.h>
-#include <iostream>
 #include <cmath>
 #include <algorithm>
+#include <fstream>
+#include <string.h>
+#include <string>
 using namespace std;
 
 void Number_1() 
@@ -45,44 +47,81 @@ void Number_1()
     cout << "m = " << m << endl;
 }
 
-void Number_2()
+void Number_3()
 {
-    double S; // начальная ссуда
-    int n; // в течении n лет
-    double mY; // месячная выплата
-    double m = 0; // заданная под условие с выплатами r
-    double r;
-    double rTemp = 0.0000; // временное r для вычисления
-
-    cout << "[ Number 2 ]" << endl;
-    cout << "Введите начальную ссуду S = ";
-    cin >> S;
-    cout << "Введите сколько на сколько лет, n = ";
-    cin >> n;
-    cout << "Введите месячную выплату mY = ";
-    cin >> mY;
-
-    if (n == 0 || S <= 0) 
-    { 
-        cout << "Неверные годы или сумма кредита! \n";
+    ofstream file("Number_3.txt");
+    if (file.is_open()) 
+    {
+        string text;
+        cout << "Введите текст: ";
+        getline(cin, text);
+        file << text;
+        file.close();
     }
 
-    while (m < mY) 
-    { 
-        r = rTemp;
-        m = S * r * pow(1 + r, n) / (12 * (pow(1 + r, n) - 1));
+    ifstream fin("Number_3.txt");
+    if (fin.is_open()) 
+    {
+        string line;
+        while (getline(fin, line)) 
+        {
+            cout << line << endl;
+        }
+        fin.close();
     }
-
-    cout << "p = " << r * 100 << "%" << endl;
 }
 
+void Number_4()
+{
+    ofstream file("Number_4.txt");
+    if (file.is_open())
+    {
+        string text;
+        cout << "Введите текст: ";
+        getline(cin, text);
+        file << text;
+        file.close();
+    }
+
+    ifstream fin("Number_4.txt");
+    if (fin.is_open())
+    {
+        string line;
+        char ch;
+        while (fin.get(ch))
+        {
+            if (ch >= '0' && ch <= '9')
+            {
+                cout << ch;
+            }
+        }
+        fin.close();
+    }
+}
+
+void Number_5()
+{
+    string x;
+    int i = 0;
+    getline(cin, x);
 
 
-
+    for (int i = 0; i < x.length() - 1; i++) {
+        for (int j = i; j < x.length() - 1; j++) {
+            if (x[i] > x[j + 1]) {
+                swap(x[i], x[j + 1]);
+            }
+        }
+    }
+    cout << x.substr(count(x.begin(), x.end(), ' '), x.length()) << endl;
+}
 
 int main()
 {
-    setlocale(0, "Russian");
-    //Number_1();
-    Number_2();
+    setlocale(LC_ALL, "rus");
+   // Number_1();
+   // Number_2();
+   // Number_3();
+   // Number_4();
+    Number_5();
 }
