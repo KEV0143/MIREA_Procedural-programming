@@ -23,10 +23,12 @@ void Number_1()
     {
         cout << "Введите корректное значение! Радиусы и высота должны быть положительными числами." << endl;
     }
-
-    l = sqrt(pow(R, 2) + pow(h, 2));
-    S = PI * (pow(R, 2) + (R + r) * l + pow(r, 2));
-    V = 0.3333333333 * PI * h * (pow(R, 2) + R * r + pow(r, 2));
+    else
+    {
+        l = sqrt(pow(R - r, 2) + pow(h, 2));
+        S = PI * (pow(R, 2) + (R + r) * l + pow(r, 2));
+        V = 0.33333333 * PI * h * (pow(R, 2) + R * r + pow(r, 2));
+    }
 
     cout << "Образующай конуса l = " << l << endl;
     cout << "Площадь конуса S = " << S << endl;
@@ -93,20 +95,29 @@ void Number_3()
 
 void Number_4()
 {
-    int n, i;
+    float n, i;
+    float y;
     cout << "[ Number 4 ]" << endl;
 
+    
     cout << "Введите производное число N: ";
     cin >> n;
-    if (n > 0)
+    y = floor (n);
+    
+    if (n > y)
     {
-        for (i = 1; i <= 10; i++)
-        {
-            cout << n + i << endl;
-        }
+        y++;
     }
-    else
-        cout << "Значение N не является натуральным числом";
+
+    if (n <= 0)
+    {
+        y = 1;
+    }
+
+        for (i = y; i < (y+10); i++)
+        {
+            cout << i << endl;
+        }   
 }
 
 void Number_5()
@@ -122,7 +133,8 @@ void Number_5()
         {
             cout << "x (" << x << ")    |     y = " << "Нельзя делать деление на нуль!" << endl;
         }
-        else {
+    else 
+        {
             cout << "x (" << x << ")    |     y = " << y << endl;
         }
     }
@@ -132,9 +144,9 @@ void Number_5()
 int main()
 {
     setlocale(0, "Russian");
-    // Number_1();
-    // Number_2();
-    // Number_3();
-    // Number_4();
-    Number_5();
+  // Number_1();
+  // Number_2();
+    //Number_3();
+    Number_4();
+    //Number_5();
 }
