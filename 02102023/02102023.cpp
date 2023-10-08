@@ -211,45 +211,178 @@ void Number_5()
 
 }
 
-
-int Cifra(string s) 
+int RIM(char x) 
 {
-    int result = 0;
-    int rim = 0;
-    for (int i = s.size() - 1; i >= 0; i--) 
+    switch (x) 
     {
-        int cif = 0;
-        switch (s[i]) {
-        case 'I': cif = 1; break;
-        case 'V': cif = 5; break;
-        case 'X': cif = 10; break;
-        case 'L': cif = 50; break;
-        case 'C': cif = 100; break;
-        case 'D': cif = 500; break;
-        case 'M': cif = 1000; break;
-        }
-        if (cif < rim) {
-            result -= cif;
-        }
-        else {
-            result += cif;
-        }
-        if (cif == 0) 
-        {
-            cout << "Неправильный символ: " << s[i] << endl;
-        }
-        rim = cif;
+    case 'I': return 1;
+    case 'V': return 5;
+    case 'X': return 10;
+    case 'L': return 50;
+    case 'C': return 100;
+    case 'D': return 500;
+    case 'M': return 1000;
+    default: return 0;
+    }
+}
+
+int convert(string x) 
+{
+    int i;
+    int j = 0;
+    int Xr;
+    int result = 0;
+    Xr = x.length() - 1;
+
+    for (i = Xr; i >= 0; i--) 
+    {
+        if (RIM(x[i]) >= j)
+            result += RIM(x[i]);
+        else
+            result -= RIM(x[i]);
+        j = RIM(x[i]);
     }
     return result;
 }
 
-void Number_6()
+void Number_6() 
 {
-    string Cifra1;
+    string x;
     cout << "Введите римскую цифру: ";
-    cin >> Cifra1;
-    int decit = Cifra(Cifra1);
-    cout << "Декодирование: " << Cifra1 << " -> " << decit << endl;
+    cin >> x;
+    cout << convert(x) << endl;
+}
+
+int random_number(int SI, int m, int i, int c) 
+{
+    return (m * SI + i) % c;
+}
+
+void Number_7() 
+{
+    int SI = 1;
+    int m, i, c;
+    int variant;
+    cout << "Выбирите вариант (1 или 2): ";
+    cin >> variant;
+
+    if (variant == 1) 
+    {
+        m = 37;
+        i = 3;
+        c = 64;
+    }
+    else if (variant == 2) 
+    {
+        m = 25173;
+        i = 13849;
+        c = 65537;
+    }
+    else 
+    {
+        cout << "Неправильный ввод" << endl;
+    }
+
+    for (int j = 0; j < 10; j++) 
+    {
+        cout << SI << endl;
+        SI = random_number(SI, m, i, c);
+    }
+}
+
+void Number_8()
+{
+    double a[3][4] =
+    {
+        {5, 2, 0, 10},
+        {3, 5, 2, 5},
+        {20, 0, 0, 0} };
+
+    double b[4][2] =
+    {
+        {1.20, 0.50},
+        {2.80, 0.40},
+        {5.00, 1.00},
+        {2.00, 1.50} };
+
+    double c[3][2] = {};
+
+    for (int i = 0; i < 3; i++) 
+    {
+        for (int j = 0; j < 2; j++) 
+        {
+            for (int k = 0; k < 4; k++) 
+            {
+                c[i][j] += a[i][k] * b[k][j];
+            }
+        }
+    }
+
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 2; j++) {
+        }
+    }
+    cout << endl;
+    int maxSeller = 0;
+    int minSeller = 0;
+    double maxMoney = -1e9;
+    double minMoney = 1e9;
+    for (int i = 0; i < 3; i++) 
+    {
+        if (c[i][0] > maxMoney) 
+        {
+            maxSeller = i + 1;
+            maxMoney = c[i][0];
+        }
+        if (c[i][0] < minMoney) 
+        {
+            minSeller = i + 1;
+            minMoney = c[i][0];
+        }
+    }
+    cout << " | Продавец " << maxSeller << " | Получил максимум денег: " << maxMoney << endl;
+    cout << " | Продавец " << minSeller << " | Получил минимум денег: " << minMoney << endl;
+
+    maxSeller = 0;
+    minSeller = 0;
+    double maxComss = -1e9;
+    double minComss = 1e9;
+    for (int i = 0; i < 3; i++) 
+    {
+        if (c[i][1] > maxComss) 
+        {
+            maxSeller = i + 1;
+            maxComss = c[i][1];
+        }
+        if (c[i][1] < minComss) 
+        {
+            minSeller = i + 1;
+            minComss = c[i][1];
+        }
+    }
+    cout << " | Продавец " << maxSeller << " | Получил наибольшие комиссионные: " << maxComss << endl;
+    cout << " | Продавец " << minSeller << " | Получил наименьшие комиссионные: " << minComss << endl;
+    cout << endl;
+    double sumMoney = 0.0;
+    for (int i = 0; i < 3; i++) 
+    {
+        sumMoney += c[i][0];
+    }
+    cout << " | Общая сумма денег вырученная за проданные товары: " << sumMoney << endl;
+
+    double sumComss = 0.0;
+    for (int i = 0; i < 3; i++) 
+    {
+        sumComss += c[i][1];
+    }
+    cout << " | Всего комиссионных получили продавцы: " << sumComss << endl;
+
+    double SumMoneyResult = 0.0;
+    for (int i = 0; i < 3; i++)
+    {
+        SumMoneyResult += c[i][0] + c[i][1];
+    }
+    cout << " | Общая сумма денег прошедшая через руки продавцов: " << SumMoneyResult << endl;
 }
 int cI(char c) {
     if (c >= '0' && c <= '9') {
@@ -312,6 +445,7 @@ void Number_9() {
     string result = osnov(num, oldosn, newosn);
     cout << "Результат: " << result << endl;
 }
+
 int main()
 {
     setlocale(0, "Russian");
@@ -320,7 +454,8 @@ int main()
     //Number_3();
     //Number_4();
     //Number_5();
-   //Number_6();
-  Number_9();
-
+    //Number_6();
+    //Number_7();
+    Number_8();
+    //Number_9();
 }
