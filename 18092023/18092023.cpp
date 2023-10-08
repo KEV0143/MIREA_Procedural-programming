@@ -7,6 +7,18 @@
 #include <string>
 using namespace std;
 
+float getPower(double x, double a)
+{
+	double betw = 1;
+	for (; a--; a > 0) {
+		betw *= x;
+	}
+	return(betw);
+}
+float getR(float p) {
+	return(p / float(100));
+}
+
 void Number_1()
 {
 	double S;
@@ -49,41 +61,34 @@ void Number_1()
 
 void Number_2()
 {
-	double S, m, n;
-	double S1, m1, n1;
-	double p;
-	S1 = 1;
-	m1 = 0;
-	n1 = 1e-8;
-
-	cout << "Введите величину ссуды: ";
+	double S, m, n, eps;
+	cout << "Введите ссуду: ";
 	cin >> S;
 	cout << "Введите месячную выплату: ";
 	cin >> m;
 	cout << "Введите количество лет: ";
 	cin >> n;
-
-	if ((m == 0) && (S == 0))
+	cout << "Введите погрешность: ";
+	cin >> eps;
+	if ((m == 0) and (S == 0))
 	{
-		cout << "Процент может быть любым, либо процент отсутствует! ";
+		cout << "Процент может быть любым, либо его нет";
+		return;
+	}
+	else if ((m < 0) or (n <= 0) or (((m != 0) and (S == 0)) or ((m == 0) and (S != 0))))
+	{
+		cout << "Решений нет";
+		return;
 	}
 
-	else if (S = n * m)
+	double coef = 100;
+	for (int i1 = coef * 100; i1 -= 1; i1 >= 0)
 	{
-		p = 0;
-		cout << p << endl;
-	}
-
-	else 
-	{
-		while (abs(S1 - m1) > n1)
+		double m2 = S * getR(double(i1) / coef) * getPower(1 + getR(double(i1) / coef), n) / (12 * (getPower(1 + getR(double(i1) / coef), n) - 1));
+		if (abs((m2)-m) < eps)
 		{
-			m1 = S1;
-			p = S1 * 100;
-			S1 = (12 * m / S) * ((1 - 1 / (pow(1 + m1, n))));
-
+			cout << double(i1) / coef << endl;
 		}
-		cout << p << endl;
 	}
 }
 
@@ -147,9 +152,12 @@ void Number_5()
 	getline(cin, x);
 
 
-	for (int i = 0; i < x.length() - 1; i++) {
-		for (int j = i; j < x.length() - 1; j++) {
-			if (x[i] > x[j + 1]) {
+	for (int i = 0; i < x.length() - 1; i++)
+	{
+		for (int j = i; j < x.length() - 1; j++)
+		{
+			if (x[i] > x[j + 1])
+			{
 				swap(x[i], x[j + 1]);
 			}
 		}

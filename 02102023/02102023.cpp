@@ -183,7 +183,7 @@ void Number_5()
         for (int j = 0; j < width; j++) 
         {
             double x = (double)j / width * (xMax - xMin) + xMin;
-            double sinX = sin(x);
+            double sinX = tan(x);
             
             if (abs(sinX - y) < 0.05) 
             {
@@ -234,6 +234,10 @@ int Cifra(string s)
         else {
             result += cif;
         }
+        if (cif == 0) 
+        {
+            cout << "Неправильный символ: " << s[i] << endl;
+        }
         rim = cif;
     }
     return result;
@@ -247,10 +251,8 @@ void Number_6()
     int decit = Cifra(Cifra1);
     cout << "Декодирование: " << Cifra1 << " -> " << decit << endl;
 }
-
 int cI(char c) {
-    if (c >= '0' && c <= '9') 
-    {
+    if (c >= '0' && c <= '9') {
         return c - '0';
     }
     else {
@@ -258,8 +260,7 @@ int cI(char c) {
     }
 }
 
-char iC(int n) 
-{
+char iC(int n) {
     if (n >= 0 && n <= 9) {
         return n + '0';
     }
@@ -268,18 +269,26 @@ char iC(int n)
     }
 }
 
-string osnov(string num, int oldosn, int newosn) 
-{
+string osnov(string num, int oldosn, int newosn) {
+    if (oldosn < 2 || oldosn > 16 || newosn < 2 || newosn > 16) {
+        return "Основание должно быть в диапазоне от 2 до 16";
+    }
+    for (int i = 0; i < num.size(); i++) {
+        if (cI(num[i]) >= oldosn) {
+            return "Неправильное введённое число для заданного основания";
+        }
+    }
     string result = "";
     int decimalNum = 0;
     int power = 1;
-    for (int i = num.size() - 1; i >= 0; i--) 
+    for (int i = num.size() - 1; i >= 0; i--)
     {
         int digit = cI(num[i]);
         decimalNum += digit * power;
         power *= oldosn;
     }
-    while (decimalNum > 0) {
+    while (decimalNum > 0)
+    {
         int digit = decimalNum % newosn;
         result = iC(digit) + result;
         decimalNum /= newosn;
@@ -287,8 +296,7 @@ string osnov(string num, int oldosn, int newosn)
     return result;
 }
 
-void Number_9() 
-{
+void Number_9() {
     string num;
     int oldosn, newosn;
     cout << "Введите число: ";
@@ -297,8 +305,12 @@ void Number_9()
     cin >> oldosn;
     cout << "Введите новое основание: ";
     cin >> newosn;
+    if (oldosn < 2 || oldosn > 36 || newosn < 2 || newosn > 36) {
+        cout << "Основание должно быть в диапазоне от 2 до 36" << endl;
+        return;
+    }
     string result = osnov(num, oldosn, newosn);
-    cout << "Результат " << result << endl;
+    cout << "Результат: " << result << endl;
 }
 int main()
 {
@@ -308,7 +320,7 @@ int main()
     //Number_3();
     //Number_4();
     //Number_5();
-    //Number_6();
-    Number_9();
+   //Number_6();
+  Number_9();
 
 }

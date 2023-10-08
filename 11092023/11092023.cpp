@@ -36,37 +36,59 @@ void Number_1()
 }
 
 void Number_2()
-{
-    double x, a, w;
-    cout << "[ Number 2 ]" << endl;
-
-    cout << "Введите значения [ x ]: ";
-    cin >> x;
-
-    cout << "Введите значения [ a ]: ";
-    cin >> a;
-
-    if (x == 0)
-    {
-        cout << "X не может быть == 0" << endl;
+float getPower(double x, double a) {
+    double betw = 1;
+    for (; a--; a > 0) {
+        betw *= x;
     }
+    return(betw);
+}
+float getR(float p) {
+    return(p / float(100));
+}
 
-    else if (abs(x) < 1)
-    {
-        w = a * log(abs(x));
-        cout << w << endl;
+    cout << m << " - месячная выплата";
+} {
+    double S, m, n;
+    cout << "Введите величину ссуды" << endl;
+    cin >> S;
+    cout << "Введите месячную выплату" << endl;
+    cin >> m;
+    cout << "Введите количество лет" << endl;
+    cin >> n;
+    if ((m == 0) and (S == 0)) {
+        cout << "процент может быть любым, т.к. выплаты всегда 0 (либо их нет)";
+        return;
     }
-
-    else if ((a - pow(x, 2)) < 0)
-    {
-        cout << "Нельзя извлечь корень из отрицательного числа" << endl;
+    else if ((m < 0) or (n <= 0) or (((m != 0) and (S == 0)) or ((m == 0) and (S != 0)))) {
+        cout << "Решений нет";
+        return;
     }
-
-    else
-    {
-        w = sqrt(a - pow(x, 2));
-        cout << w << endl;
+    int countOfDecisions = 0;
+    double lastDecision = 0;
+    double range = 0;
+    double coef = 10;
+    while (true) {
+        for (int i1 = coef * 1000; i1 -= 1; i1 > 0) {
+            //cout << i1 << endl;
+            double m2 = S * getR(double(i1) / coef) * getPower(1 + getR(double(i1) / coef), n) / (12 * (getPower(1 + getR(double(i1) / coef), n) - 1));
+            //cout << m2 << endl;
+            if (abs((m2)-m) < range) {
+                lastDecision = double(i1) / coef;
+                countOfDecisions++; //cout << "ссуда выдана под " << i1 << "%";
+            }
+        }
+        if (countOfDecisions == 1) {
+            if (lastDecision <= (1 / coef + 1e-8)) { cout << "Так нельзя"; return; }
+            cout << "ссуда выдана под " << lastDecision << "%";
+            return;
+        }
+        else if (countOfDecisions > 1) { cout << range << "Ошибка"; return; }
+        else {
+            range += 0.001;
+        }
     }
+    cout << "END";
 }
 
 void Number_3()
@@ -145,8 +167,8 @@ int main()
 {
     setlocale(0, "Russian");
   // Number_1();
-  // Number_2();
+  Number_2();
     //Number_3();
-    Number_4();
+   // Number_4();
     //Number_5();
 }
