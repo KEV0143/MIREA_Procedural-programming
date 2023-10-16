@@ -1,6 +1,11 @@
 ﻿#include <iostream>
 #include <fstream>
 #include <cmath>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <sstream>
+#include <map>
 using namespace std;
 
 void Number_1() 
@@ -211,51 +216,61 @@ void Number_5()
 
 }
 
-int RIM(char x) 
-{
-    switch (x) 
-    {
-    case 'I': return 1;
-    case 'V': return 5;
-    case 'X': return 10;
-    case 'L': return 50;
-    case 'C': return 100;
-    case 'D': return 500;
-    case 'M': return 1000;
-    default: return 0;
-    }
-}
-
-int convert(string x) 
-{
-    int i;
-    int j = 0;
-    int Xr;
-    int result = 0;
-    Xr = x.length() - 1;
-
-    for (i = Xr; i >= 0; i--) 
-    {
-        if (RIM(x[i]) >= j)
-            result += RIM(x[i]);
-        else
-            result -= RIM(x[i]);
-        j = RIM(x[i]);
-    }
-    return result;
-}
 
 void Number_6() 
 {
-    string x;
+    string directory = "C:/Users/KEV/Desktop/MIREA_Jobs-main/02102023/6.txt";
+    string filename = "6.txt";
+
     cout << "Введите римскую цифру: ";
-    cin >> x;
-    cout << convert(x) << endl;
+    string number;
+    cin >> number;
+
+    ifstream in(directory);
+    if (in.is_open()) 
+    {
+        string line;
+        while (getline(in, line)) 
+        {
+            string firstPart = "";
+            string NUM = "";
+            bool whasEq = false;
+            bool secEq = false;
+
+            for (char c : line) {
+                if (c == '=') {
+                    if (!whasEq) {
+                        whasEq = true;
+                    }
+                    else {
+                        secEq = true;
+                        break;
+                    }
+                    continue;
+                }
+                if (whasEq) {
+                    NUM += c;
+                }
+                else {
+                    firstPart += c;
+                }
+            }
+
+            if (number == NUM) {
+                cout << firstPart << endl;
+                return;
+            }
+        }
+        cout << "Некорректный ввод, ошибка." << endl;
+    }
+    else {
+        cout << "Ошибка дериктории." << endl;
+    }
 }
 
 int random_number(int SI, int m, int i, int c) 
 {
-    return (m * SI + i) % c;
+    return SI = (m * SI + i) % c;
 }
 
 void Number_7() 
@@ -384,6 +399,7 @@ void Number_8()
     }
     cout << " | Общая сумма денег прошедшая через руки продавцов: " << SumMoneyResult << endl;
 }
+
 int cI(char c) {
     if (c >= '0' && c <= '9') {
         return c - '0';
@@ -454,8 +470,8 @@ int main()
     //Number_3();
     //Number_4();
     //Number_5();
-    //Number_6();
+    Number_6();
     //Number_7();
-    Number_8();
+    //Number_8();
     //Number_9();
 }

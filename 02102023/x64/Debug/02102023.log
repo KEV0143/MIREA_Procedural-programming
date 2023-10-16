@@ -1,5 +1,4 @@
 ﻿  02102023.cpp
-C:\Users\KEV\Desktop\MIREA_Jobs-main\02102023\02102023.cpp(61,23): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
-C:\Users\KEV\Desktop\MIREA_Jobs-main\02102023\02102023.cpp(235,21): warning C4267: =: преобразование из "size_t" в "int"; возможна потеря данных
-C:\Users\KEV\Desktop\MIREA_Jobs-main\02102023\02102023.cpp(417,16): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\KEV\Desktop\MIREA_Jobs-main\02102023\02102023.cpp(66,23): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+C:\Users\KEV\Desktop\MIREA_Jobs-main\02102023\02102023.cpp(433,16): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
   02102023.vcxproj -> C:\Users\KEV\Desktop\MIREA_Jobs-main\02102023\x64\Debug\02102023.exe

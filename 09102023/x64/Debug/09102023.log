@@ -1,0 +1,4 @@
+﻿  09102023.cpp
+C:\Users\KEV\Desktop\MIREA_Jobs-main\09102023\09102023.cpp(229,21): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\KEV\Desktop\MIREA_Jobs-main\09102023\09102023.cpp(234,27): warning C4244: +=: преобразование "double" в "int", возможна потеря данных
+  09102023.vcxproj -> C:\Users\KEV\Desktop\MIREA_Jobs-main\09102023\x64\Debug\09102023.exe
