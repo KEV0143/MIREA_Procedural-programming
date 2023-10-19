@@ -1,9 +1,0 @@
-﻿  18092023.cpp
-C:\Users\KEV\Desktop\MIREA_Jobs-main\18092023\18092023.cpp(13,16): warning C4552: ">": результат выражения не используется
-C:\Users\KEV\Desktop\MIREA_Jobs-main\18092023\18092023.cpp(16,9): warning C4244: return: преобразование "double" в "float", возможна потеря данных
-C:\Users\KEV\Desktop\MIREA_Jobs-main\18092023\18092023.cpp(85,14): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
-C:\Users\KEV\Desktop\MIREA_Jobs-main\18092023\18092023.cpp(85,40): warning C4552: ">=": результат выражения не используется
-C:\Users\KEV\Desktop\MIREA_Jobs-main\18092023\18092023.cpp(87,35): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
-C:\Users\KEV\Desktop\MIREA_Jobs-main\18092023\18092023.cpp(87,74): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
-C:\Users\KEV\Desktop\MIREA_Jobs-main\18092023\18092023.cpp(87,124): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
-  18092023.vcxproj -> C:\Users\KEV\Desktop\MIREA_Jobs-main\18092023\x64\Debug\18092023.exe
