@@ -1,83 +1,81 @@
-﻿#include <iostream>
-#include <Windows.h>
-#include <cmath>
-#include <algorithm>
-#include <fstream>
-#include <string.h>
-#include <string>
+﻿#include <iostream> 
+#include <Windows.h> 
+#include <cmath> 
+#include <algorithm> 
+#include <fstream> 
+#include <string.h> 
+#include <string> 
 using namespace std;
 
 float getPower(double x, double a)
 {
 	double betw = 1;
-	for (; a--; a > 0) {
+	for (; a--; a > 0) 
+	{
 		betw *= x;
 	}
 	return(betw);
 }
-float getR(float p) {
+float getR(float p) 
+{
 	return(p / float(100));
 }
 
 void Number_1()
 {
-	double S;
-	double p;
-	double n;
-	double r;
-	double m;
-	cout << "[ Number 1 ]" << endl;
-
-	cout << "Введите значение S = ";
+	double S, p, n, r, m;
+	cout << "Введите займ (S) рублей: ";
 	cin >> S;
-	cout << "Введите значение p = ";
+	cout << "Введите (%) p: ";
 	cin >> p;
-	cout << "Введите значение n = ";
+	cout << "Введите на сколько лет (n): ";
 	cin >> n;
 
-	if (S <= 0)
+	if (S <= p || p <= n || S <= n || S <= 0 || n <= 0)
 	{
-		cout << "Числа не могут быть меньше нуля! \n";
+		cout << "Введите корректные значения для (S), (p) и (n) | -> (S > p > n)";
+		return;
 	}
 
-	else if (p == 0)
-	{
-		m = S / (12 * n);
-	}
+	r = p / 100.0;
 
+	if (n == 0)
+	{
+		cout << "(m) Месячная выплата равна: " << S / (12 * n);
+	}
+	else if (r == 0)
+	{
+		cout << "(m) Месячная выплата равна: " << S / (12 * n);
+	}
 	else
 	{
-		r = p / 100;
-		m = S * r * pow(1 + r, n) / (12 * (pow(1 + r, n) - 1));
+		m = (S * r * pow(1 + r, n)) / (12 * (pow(1 + r, n) - 1));
+		cout << "(m) Месячная выплата равна: " << m;
 	}
-
-	if (12 * (pow(1 + r, n) - 1) == 0)
-	{
-		cout << "Нельзя разделить на 0! \n";
-	}
-
-	cout << "m = " << m << endl;
 }
 
 void Number_2()
 {
 	double S, m, n, eps;
-	cout << "Введите ссуду: ";
+	double p = 0;
+	cout << "Величина ссуды (S): ";
 	cin >> S;
-	cout << "Введите месячную выплату: ";
+	cout << "Месячная выплата (m): ";
 	cin >> m;
-	cout << "Введите количество лет: ";
+	cout << "Количество лет (n): ";
 	cin >> n;
-	cout << "Введите погрешность: ";
+	cout << "Погрешность результата (1e-8): ";
 	cin >> eps;
+	
 	if ((m == 0) and (S == 0))
 	{
-		cout << "Процент может быть любым, либо его нет";
+		cout << "Вводимый (%) может быть любым, либо его нет";
 		return;
 	}
+	
 	else if ((m < 0) or (n <= 0) or (((m != 0) and (S == 0)) or ((m == 0) and (S != 0))))
 	{
-		cout << "Решений нет";
+		cout << "Решение отсутствует, введите корректные значения (S), (m), (n) ";
 		return;
 	}
 
@@ -87,11 +85,12 @@ void Number_2()
 		double m2 = S * getR(double(i1) / coef) * getPower(1 + getR(double(i1) / coef), n) / (12 * (getPower(1 + getR(double(i1) / coef), n) - 1));
 		if (abs((m2)-m) < eps)
 		{
-			cout << double(i1) / coef << endl;
+			p = (double(i1) / coef);
 		}
-	}
-}
+	} 
 
+	cout << "P(%) под который выдана ссуда (S): " << p << endl;
+}
 
 void Number_3()
 {
@@ -168,8 +167,8 @@ void Number_5()
 int main()
 {
 	setlocale(LC_ALL, "rus");
-	// Number_1();
-	Number_2();
+	 Number_1();
+	// Number_2();
 	// Number_3();
 	// Number_4();
 	// Number_5();
