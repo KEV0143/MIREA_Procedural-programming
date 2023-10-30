@@ -1,7 +1,3 @@
 ﻿  Practical work Game C++.cpp
-C:\Users\KEV\Desktop\MIREA_Procedural-programming-main\Practical work Game C++\Practical work Game C++.cpp(47,73): warning C4267: аргумент: преобразование из "size_t" в "_Ty"; возможна потеря данных
-          with
-          [
-              _Ty=int
-          ]
+C:\Users\KEV\Desktop\MIREA_Procedural-programming-main\Practical work Game C++\Practical work Game C++.cpp(77,33): warning C4018: <: несоответствие типов со знаком и без знака
   Practical work Game C++.vcxproj -> C:\Users\KEV\Desktop\MIREA_Procedural-programming-main\Practical work Game C++\x64\Debug\Practical work Game C++.exe
